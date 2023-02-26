@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:tt_movie_list/ui/pages/movie_details_page/movie_details_page.dart';
 
-import '../../../controllers/movie_controller.dart';
+import '../../../controllers/movie_page_controller.dart';
 import '../../styles/movie_text_style.dart';
-import '../movie_details_page/movie_details_page.dart';
 import 'views/movie_tile.dart';
 
 class MoviePage extends StatelessWidget {
-  final controller = Get.put(MovieController());
+  final controller = Get.put(MoviePageController());
 
   MoviePage({super.key});
 
@@ -43,10 +43,12 @@ class MoviePage extends StatelessWidget {
           movie: movie,
           genres: genres,
           onTap: () {
-            Get.to(MovieDetailsPage(
-              movie: movie,
-              genres: genres,
-            ));
+            Get.to(
+              () => MovieDetailsPage(
+                movie: movie,
+                genres: genres,
+              ),
+            );
           },
         );
       },
