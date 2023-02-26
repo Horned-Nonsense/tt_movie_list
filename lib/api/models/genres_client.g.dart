@@ -21,7 +21,7 @@ class _GenresClient implements GenresClient {
   String? baseUrl;
 
   @override
-  Future<Genres> getGenres() async {
+  Future<Genres> getGenres(apiKey) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -34,7 +34,7 @@ class _GenresClient implements GenresClient {
     )
             .compose(
               _dio.options,
-              '/genre/movie/list?api_key=ea4b6234f29f9a631d2a4ac6e5cd1d38',
+              '/genre/movie/list?api_key=${apiKey}',
               queryParameters: queryParameters,
               data: _data,
             )

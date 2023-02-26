@@ -10,6 +10,6 @@ part 'genres_client.g.dart';
 abstract class GenresClient {
   factory GenresClient(Dio dio, {String baseUrl}) = _GenresClient;
 
-  @GET('${NetworkConstants.getGenres}?${NetworkConstants.apiKey}')
-  Future<Genres> getGenres();
+  @GET('${NetworkConstants.getGenres}${NetworkConstants.apiKey}{apiKey}')
+  Future<Genres> getGenres(@Path('apiKey') String apiKey,);
 }

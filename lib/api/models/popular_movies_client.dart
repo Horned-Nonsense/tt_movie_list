@@ -10,6 +10,6 @@ part 'popular_movies_client.g.dart';
 abstract class PopularMoviesClient {
   factory PopularMoviesClient(Dio dio, {String baseUrl}) = _PopularMoviesClient;
 
-  @GET('${NetworkConstants.getFilms}?${NetworkConstants.apiKey}')
-  Future<PopularMovies> getMovies();
+  @GET('${NetworkConstants.getFilms}${NetworkConstants.apiKey}{apiKey}')
+  Future<PopularMovies> getMovies(@Path('apiKey') String apiKey,);
 }

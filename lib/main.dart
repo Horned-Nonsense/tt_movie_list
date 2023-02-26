@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'muvie_list_app.dart';
+import 'movie_list_app.dart';
 
-void main() {
-  runApp(const MuvieListApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await dotenv.load(fileName: '.env');
+
+  runApp(const MovieListApp());
 }
-
