@@ -14,12 +14,10 @@ class Movie {
   final List<int> genreIds;
   @JsonKey(name: 'poster_path')
   final String posterPath;
-  @JsonKey(name: 'adult')
-  final bool? adult;
   @JsonKey(name: 'release_date')
-  final String? releaseDate;
+  final String releaseDate;
   @JsonKey(name: 'vote_average')
-  final double? voteAverage;
+  final double voteAverage;
 
   const Movie({
     required this.id,
@@ -27,9 +25,8 @@ class Movie {
     required this.overview,
     required this.genreIds,
     required this.posterPath,
-    this.adult,
-    this.releaseDate,
-    this.voteAverage,
+    required this.releaseDate,
+    required this.voteAverage,
   });
 
   const Movie.empty()
@@ -38,9 +35,8 @@ class Movie {
         overview = '',
         genreIds = const [],
         posterPath = '',
-        adult = null,
-        releaseDate = null,
-        voteAverage = null;
+        releaseDate = '',
+        voteAverage = .0;
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
 }
