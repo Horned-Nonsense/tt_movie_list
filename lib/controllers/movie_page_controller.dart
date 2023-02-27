@@ -18,12 +18,14 @@ class MoviePageController extends GetxController {
 
   int movieListPage = 1;
   final dio = Dio();
+  final String apiKey = dotenv.get('MOVIE_KEY');
 
   @override
   Future<void> onInit() async {
+    dio.options.headers['Content-Type'] = 'app/json';
     super.onInit();
     await getGenresApi();
-    getMoviesApi();
+    await getMoviesApi();
   }
 
   @override
@@ -36,7 +38,7 @@ class MoviePageController extends GetxController {
 
   getMoviesApi() async {
     final moviesClient = PopularMoviesClient(dio);
-    final String apiKey = dotenv.get('MOVIE_KEY');
+
     try {
       if (popularMovies.isEmpty) isDataLoading(true);
       if (popularMovies.isNotEmpty) pagination(true);

@@ -6,6 +6,7 @@ part 'genres.g.dart';
 
 @JsonSerializable()
 class Genres {
+  @JsonKey(name: 'genres')
   final List<Genre> genres;
 
   const Genres({required this.genres});

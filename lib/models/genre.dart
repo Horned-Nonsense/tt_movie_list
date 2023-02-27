@@ -4,7 +4,9 @@ part 'genre.g.dart';
 
 @JsonSerializable()
 class Genre {
+  @JsonKey(name: 'id')
   final int id;
+  @JsonKey(name: 'name')
   final String name;
 
   const Genre({
