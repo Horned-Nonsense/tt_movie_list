@@ -18,7 +18,7 @@ class MoviePage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.black.withOpacity(0.1),
-        title: Text(
+        title: const Text(
           'Popular Movies',
           style: MovieTextStyle.appBarTitleTextStyle,
         ),

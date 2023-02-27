@@ -22,8 +22,8 @@ class MoviePageController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    dio.options.headers['Content-Type'] = 'app/json';
     super.onInit();
+    dio.options.headers['Content-Type'] = 'app/json';
     await getGenresApi();
     await getMoviesApi();
   }
