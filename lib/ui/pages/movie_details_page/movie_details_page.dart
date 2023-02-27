@@ -23,7 +23,7 @@ class MovieDetailsPage extends StatelessWidget {
 
     for (Genre genre in genres) {
       if (genresIds.contains(genre.id)) {
-        if (movieGenres.length == 4) break;
+        if (movieGenres.length == 3) break;
         movieGenres.add(genre.name);
       }
     }
@@ -43,23 +43,25 @@ class MovieDetailsPage extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const SizedBox(
-          height: 8,
-        ),
-        _buildPoster(),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 8,
-            horizontal: 8,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(
+            height: 8,
           ),
-          child: _buildMovieInfo(),
-        ),
-        _buildMovieDescription(),
-      ],
+          _buildPoster(),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 8,
+            ),
+            child: _buildMovieInfo(),
+          ),
+          _buildMovieDescription(),
+        ],
+      ),
     );
   }
 

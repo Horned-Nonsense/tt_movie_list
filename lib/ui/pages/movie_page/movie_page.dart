@@ -31,25 +31,47 @@ class MoviePage extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return MasonryGridView.count(
-      crossAxisCount: 2,
-      itemCount: controller.popularMovies.movies.length,
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        final movie = controller.popularMovies.movies[index];
-        final genres = controller.allGenres.genres;
-        return MovieTile(
-          movie: movie,
-          genres: genres,
-          onTap: () {
-            Get.to(
-              () => MovieDetailsPage(
-                movie: movie,
-                genres: genres,
-              ),
-            );
-          },
+    ScrollController scrollController = ScrollController();
+    scrollController.addListener(() {
+      if (scrollController.position.maxScrollExtent ==
+          scrollController.position.pixels) {
+        controller.getMoviesApi();
+      }
+    });
+
+    return Obx(
+      () => MasonryGridView.count(
+        scrollDirection: Axis.vertical,
+        controller: scrollController,
+        crossAxisCount: 2,
+        itemCount: controller.pagination.value
+            ? controller.popularMovies.length + 1
+            : controller.popularMovies.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          if (index < controller.popularMovies.length) {
+            return _buildTile(index);
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildTile(int index) {
+    final movie = controller.popularMovies[index];
+    final genres = controller.allGenres;
+
+    return MovieTile(
+      movie: movie,
+      genres: genres,
+      onTap: () {
+        Get.to(
+          () => MovieDetailsPage(
+            movie: movie,
+            genres: genres,
+          ),
         );
       },
     );

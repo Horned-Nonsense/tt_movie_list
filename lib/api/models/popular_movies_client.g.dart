@@ -21,7 +21,10 @@ class _PopularMoviesClient implements PopularMoviesClient {
   String? baseUrl;
 
   @override
-  Future<PopularMovies> getMovies(apiKey) async {
+  Future<PopularMovies> getMovies(
+    apiKey,
+    page,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -34,7 +37,7 @@ class _PopularMoviesClient implements PopularMoviesClient {
     )
             .compose(
               _dio.options,
-              '/movie/popular?api_key=${apiKey}',
+              '/movie/popular?api_key=${apiKey}&page=${page}',
               queryParameters: queryParameters,
               data: _data,
             )
